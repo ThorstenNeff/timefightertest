@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">timefighter</string>
+    <string name="reset_highscore">Highscore zurücksetzen</string>
+    <string name="list_highscore">HighscoreListe</string>
+</resources>
