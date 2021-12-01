@@ -12,4 +12,9 @@
         android:title="@string/reset_highscore"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/inputName"
+        android:title="@string/inputName"
+        app:showAsAction="never" />
+
 </menu>

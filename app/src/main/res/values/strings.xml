@@ -2,4 +2,5 @@
     <string name="app_name">timefighter</string>
     <string name="reset_highscore">Highscore zurücksetzen</string>
     <string name="list_highscore">HighscoreListe</string>
+    <string name="inputName">DebugName</string>
 </resources>

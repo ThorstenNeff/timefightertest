@@ -13,6 +13,9 @@
             android:name=".HighscoreActivity"
             android:exported="true" />
         <activity
+            android:name=".EnterNameActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -24,6 +24,16 @@ class MainActivity : AppCompatActivity() {
 
     var highscore = -1
 
+    fun highscoreSpeichern() {
+        highscoresign()
+        setSignVisibility(true)
+        saveNewHighscore(punktestand)
+        highscore = punktestand
+        aktualisiereHighscore()
+        val intent = Intent(this, EnterNameActivity::class.java)
+        startActivity(intent)
+    }
+
     fun setSignVisibility(visible: Boolean) {
         var  highscoreMessage= findViewById<TextView>(R.id.highscoreMessage)
         if (visible == true) {
@@ -97,11 +107,9 @@ class MainActivity : AppCompatActivity() {
             timerbutton.text = "Game Over"
 
             if (punktestand > highscore){
-                highscoresign()
-                setSignVisibility(true)
-                saveNewHighscore(punktestand)
-                highscore = punktestand
-                aktualisiereHighscore()
+
+                highscoreSpeichern()
+
             }
         }
     }
@@ -159,10 +167,15 @@ class MainActivity : AppCompatActivity() {
         if (item.itemId == R.id.list) {
             //TODO: in activity springen
             Log.d("unser_Menu", "in activity springen")
-            val intent= Intent(this, HighscoreActivity::class.java)
+            val intent = Intent(this, HighscoreActivity::class.java)
             startActivity(intent)
-        } else if (item.itemId == R.id.reset) {
+        }
+        else if (item.itemId == R.id.reset) {
             resetHighscore()
+        }
+        else if (item.itemId == R.id.inputName) {
+            val intent = Intent(this, EnterNameActivity::class.java)
+            startActivity(intent)
         }
 
         return true
