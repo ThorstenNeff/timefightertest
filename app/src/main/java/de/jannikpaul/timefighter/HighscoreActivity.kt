@@ -42,4 +42,12 @@ class HighscoreActivity : AppCompatActivity() {
         listView.adapter = HighscoreAdapter(this, highscoreEntryList)
     }
 
+    companion object {
+        val HIGHSCORES = listOf<HighscoreEntry>(
+            HighscoreEntry(10, "Hubert"),
+            HighscoreEntry(8, "Asmodina07"),
+            HighscoreEntry(9, "Anonym"),
+        )
+    }
+
 }
