@@ -81,7 +81,7 @@ class EnterNameActivity : AppCompatActivity() {
 
         // Save string in Shared Preferences
         prefs.edit {
-            putString("highscorelist_key", stringToSave)
+            putString("highscorelist_list", stringToSave)
             commit()
         }
     }

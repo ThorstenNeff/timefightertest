@@ -27,10 +27,11 @@ class HighScoreAdapter(context: Context, var datasource: MutableList<HighscoreEn
 
     override fun getView(position: Int, p1: View?, parent: ViewGroup?): View {
         val rowView = inflater.inflate(R.layout.list_item, parent, false)
-        val textView = rowView.findViewById<TextView>(R.id.playerNameTextView)
+        val playerNameTextView = rowView.findViewById<TextView>(R.id.playerNameTextView)
+        val scoreTextView = rowView.findViewById<TextView>(R.id.scoreTextView)
         val singleHighScoreEntry = datasource[position]
-        textView.text = singleHighScoreEntry.playerName
-        textView.setTextColor(Color.MAGENTA)
+        playerNameTextView.text = singleHighScoreEntry.playerName
+        scoreTextView.text = singleHighScoreEntry.score.toString()
         return rowView
     }
 
