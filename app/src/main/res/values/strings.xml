@@ -3,4 +3,6 @@
     <string name="reset_highscore">Highscore zurücksetzen</string>
     <string name="list_highscore">HighscoreListe</string>
     <string name="inputName">DebugName</string>
+    <string name="player_name">Name</string>
+    <string name="goback">Zurück zum Start</string>
 </resources>

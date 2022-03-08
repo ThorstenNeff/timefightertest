@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Timefighter">
         <activity
-            android:name=".HighscoreActivity"
+            android:name=".HighScoreActivity"
             android:exported="true" />
         <activity
             android:name=".EnterNameActivity"

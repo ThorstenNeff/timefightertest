@@ -3,7 +3,6 @@ package de.jannikpaul.timefighter
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -12,15 +11,9 @@ import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.Button
-import android.widget.TextClock
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
-import com.google.gson.Gson
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
-import com.google.gson.reflect.TypeToken
-
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,19 +24,16 @@ class MainActivity : AppCompatActivity() {
 
     var highscore = -1
 
-    var highScoreList = mutableListOf<HighscoreEntry>()
-
-    val gson = Gson()
-    val highscoreEntryTypeToken = object : TypeToken<MutableList<HighscoreEntry>>() {}.type
-
-
     fun highscoreSpeichern() {
         highscoresign()
         setSignVisibility(true)
         saveNewHighscore(punktestand)
         highscore = punktestand
         aktualisiereHighscore()
+
+        // EnterNameActivity starten und den aktuellen highscore als Extra mit übergeben
         val intent = Intent(this, EnterNameActivity::class.java)
+        intent.putExtra("highscore",highscore)
         startActivity(intent)
     }
 
@@ -67,30 +57,6 @@ class MainActivity : AppCompatActivity() {
         highscorefield.text ="Highscore: $highscore"
     }
 
-    fun loadHighscoreList() {
-        val pref: SharedPreferences = getSharedPreferences("Default", Context.MODE_PRIVATE)
-        val loadedString = pref.getString(
-            "highscorelist_key",
-            gson.toJson(HighscoreActivity.HIGHSCORES)
-        )
-
-        Log.d("highscore", loadedString ?: "")
-
-        highScoreList = gson.fromJson(loadedString, highscoreEntryTypeToken)
-    }
-
-    fun saveHighscoreList() {
-        val prefs: SharedPreferences = getSharedPreferences("Default", Context.MODE_PRIVATE)
-        val stringToSave = gson.toJson(highScoreList)
-
-        Log.d("highscore",stringToSave)
-
-        prefs.edit {
-            putString("highscorelist_key", stringToSave)
-            commit()
-        }
-    }
-
     fun loadHighscore() {
         val pref: SharedPreferences = getSharedPreferences("Default", Context.MODE_PRIVATE)
         highscore = pref.getInt("highscore_key", -1)
@@ -104,14 +70,6 @@ class MainActivity : AppCompatActivity() {
             putInt("highscore_key", score)
             commit()
         }
-
-        // Add to list
-        val eintrag = HighscoreEntry(
-            score,
-            "Anonym"
-        )
-        highScoreList.add(eintrag)
-        saveHighscoreList()
     }
 
     fun resetHighscore() {
@@ -164,7 +122,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         loadHighscore()
-        loadHighscoreList()
 
         aktualisierePunktestand()
 
@@ -213,7 +170,7 @@ class MainActivity : AppCompatActivity() {
         if (item.itemId == R.id.list) {
             //TODO: in activity springen
             Log.d("unser_Menu", "in activity springen")
-            val intent = Intent(this, HighscoreActivity::class.java)
+            val intent = Intent(this, HighScoreActivity::class.java)
             startActivity(intent)
         }
         else if (item.itemId == R.id.reset) {
