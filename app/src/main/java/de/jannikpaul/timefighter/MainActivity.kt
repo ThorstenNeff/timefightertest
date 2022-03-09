@@ -76,6 +76,13 @@ class MainActivity : AppCompatActivity() {
         saveNewHighscore(0)
         highscore = 0
         aktualisiereHighscore()
+
+        // Also reset highscore list (save empty json array to shared preferences)
+        val prefs: SharedPreferences = getSharedPreferences("Default", Context.MODE_PRIVATE)
+        prefs.edit {
+            putString("highscorelist_list", "[]")
+            commit()
+        }
     }
 
 

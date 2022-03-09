@@ -25,6 +25,9 @@ class HighScoreActivity : AppCompatActivity() {
 
         val highScoreList = loadList()
 
+        // Sort list
+        highScoreList.sortWith(compareByDescending { it.score })
+
         // Pass highscoreEntryList to list builder (adapter)
         val adapter = HighScoreAdapter(this, highScoreList)
 
